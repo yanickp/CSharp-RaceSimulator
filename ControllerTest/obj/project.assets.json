@@ -1303,16 +1303,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
-      },
-      "Controller/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "compile": {
-          "bin/placeholder/Controller.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Controller.dll": {}
-        }
       }
     }
   },
@@ -5029,16 +5019,10 @@
         "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xmldocument.nuspec"
       ]
-    },
-    "Controller/1.0.0": {
-      "type": "project",
-      "path": "../Controller/Controller.csproj",
-      "msbuildProject": "../Controller/Controller.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Controller >= 1.0.0",
       "FSharp.Core >= 5.0.0",
       "Microsoft.NET.Test.Sdk >= 16.9.4",
       "NUnit >= 3.13.1",
@@ -5052,11 +5036,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Windesheim\\c# les\\ControllerTest\\ControllerTest.fsproj",
+      "projectUniqueName": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\ControllerTest\\ControllerTest.fsproj",
       "projectName": "ControllerTest",
-      "projectPath": "E:\\Windesheim\\c# les\\ControllerTest\\ControllerTest.fsproj",
+      "projectPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\ControllerTest\\ControllerTest.fsproj",
       "packagesPath": "C:\\Users\\yanic\\.nuget\\packages\\",
-      "outputPath": "E:\\Windesheim\\c# les\\ControllerTest\\obj\\",
+      "outputPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\ControllerTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\yanic\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5072,11 +5056,7 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {
-            "E:\\Windesheim\\c# les\\Controller\\Controller.csproj": {
-              "projectPath": "E:\\Windesheim\\c# les\\Controller\\Controller.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       }
     },

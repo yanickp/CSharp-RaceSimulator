@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Windesheim\\c# les\\Controller\\Controller.csproj",
+      "projectUniqueName": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Controller\\Controller.csproj",
       "projectName": "Controller",
-      "projectPath": "E:\\Windesheim\\c# les\\Controller\\Controller.csproj",
+      "projectPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Controller\\Controller.csproj",
       "packagesPath": "C:\\Users\\yanic\\.nuget\\packages\\",
-      "outputPath": "E:\\Windesheim\\c# les\\Controller\\obj\\",
+      "outputPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Controller\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\yanic\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Windesheim\\c# les\\race simulator\\race simulator.csproj": {}
+    "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\race simulator\\race simulator.csproj": {}
   },
   "projects": {
-    "E:\\Windesheim\\c# les\\Controller\\Controller.csproj": {
+    "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Controller\\Controller.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Windesheim\\c# les\\Controller\\Controller.csproj",
+        "projectUniqueName": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Controller\\Controller.csproj",
         "projectName": "Controller",
-        "projectPath": "E:\\Windesheim\\c# les\\Controller\\Controller.csproj",
+        "projectPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Controller\\Controller.csproj",
         "packagesPath": "C:\\Users\\yanic\\.nuget\\packages\\",
-        "outputPath": "E:\\Windesheim\\c# les\\Controller\\obj\\",
+        "outputPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Controller\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\yanic\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -58,14 +58,14 @@
         }
       }
     },
-    "E:\\Windesheim\\c# les\\Model\\Model.csproj": {
+    "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Windesheim\\c# les\\Model\\Model.csproj",
+        "projectUniqueName": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "E:\\Windesheim\\c# les\\Model\\Model.csproj",
+        "projectPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Model\\Model.csproj",
         "packagesPath": "C:\\Users\\yanic\\.nuget\\packages\\",
-        "outputPath": "E:\\Windesheim\\c# les\\Model\\obj\\",
+        "outputPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\yanic\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -112,14 +112,14 @@
         }
       }
     },
-    "E:\\Windesheim\\c# les\\race simulator\\race simulator.csproj": {
+    "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\race simulator\\race simulator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Windesheim\\c# les\\race simulator\\race simulator.csproj",
+        "projectUniqueName": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\race simulator\\race simulator.csproj",
         "projectName": "race simulator",
-        "projectPath": "E:\\Windesheim\\c# les\\race simulator\\race simulator.csproj",
+        "projectPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\race simulator\\race simulator.csproj",
         "packagesPath": "C:\\Users\\yanic\\.nuget\\packages\\",
-        "outputPath": "E:\\Windesheim\\c# les\\race simulator\\obj\\",
+        "outputPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\race simulator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\yanic\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -136,11 +136,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "E:\\Windesheim\\c# les\\Controller\\Controller.csproj": {
-                "projectPath": "E:\\Windesheim\\c# les\\Controller\\Controller.csproj"
+              "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Controller\\Controller.csproj": {
+                "projectPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Controller\\Controller.csproj"
               },
-              "E:\\Windesheim\\c# les\\Model\\Model.csproj": {
-                "projectPath": "E:\\Windesheim\\c# les\\Model\\Model.csproj"
+              "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Model\\Model.csproj": {
+                "projectPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Model\\Model.csproj"
               }
             }
           }

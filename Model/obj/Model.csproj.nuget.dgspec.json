@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Windesheim\\c# les\\Model\\Model.csproj": {}
+    "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Model\\Model.csproj": {}
   },
   "projects": {
-    "E:\\Windesheim\\c# les\\Model\\Model.csproj": {
+    "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Windesheim\\c# les\\Model\\Model.csproj",
+        "projectUniqueName": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "E:\\Windesheim\\c# les\\Model\\Model.csproj",
+        "projectPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Model\\Model.csproj",
         "packagesPath": "C:\\Users\\yanic\\.nuget\\packages\\",
-        "outputPath": "E:\\Windesheim\\c# les\\Model\\obj\\",
+        "outputPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\yanic\\AppData\\Roaming\\NuGet\\NuGet.Config",

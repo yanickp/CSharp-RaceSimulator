@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rbRvNzD4PNskzRput/cDACcSau+T+gzOyzRSeSVvzvxONRtPQqtevqjv2zoD1dLay6QjNeThShChYFCSyW96ow==",
+  "dgSpecHash": "+mu5DGG9XExmDF4bSh2+loaybUeCDvxzXsr2FpRsR6VTYRVutZMGEaRfsk+ww+8dsRqRFWNGgxF8RorBTN6xkQ==",
   "success": true,
-  "projectFilePath": "E:\\Windesheim\\c# les\\race simulator\\race simulator.csproj",
+  "projectFilePath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\race simulator\\race simulator.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

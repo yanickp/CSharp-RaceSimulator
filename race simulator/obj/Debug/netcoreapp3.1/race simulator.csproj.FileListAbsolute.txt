@@ -1,0 +1,19 @@
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\bin\Debug\netcoreapp3.1\race simulator.exe
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\bin\Debug\netcoreapp3.1\race simulator.deps.json
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\bin\Debug\netcoreapp3.1\race simulator.runtimeconfig.json
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\bin\Debug\netcoreapp3.1\race simulator.runtimeconfig.dev.json
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\bin\Debug\netcoreapp3.1\race simulator.dll
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\bin\Debug\netcoreapp3.1\race simulator.pdb
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\bin\Debug\netcoreapp3.1\Controller.dll
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\bin\Debug\netcoreapp3.1\Model.dll
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\bin\Debug\netcoreapp3.1\Controller.pdb
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\bin\Debug\netcoreapp3.1\Model.pdb
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\obj\Debug\netcoreapp3.1\race simulator.csproj.AssemblyReference.cache
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\obj\Debug\netcoreapp3.1\race simulator.GeneratedMSBuildEditorConfig.editorconfig
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\obj\Debug\netcoreapp3.1\race simulator.AssemblyInfoInputs.cache
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\obj\Debug\netcoreapp3.1\race simulator.AssemblyInfo.cs
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\obj\Debug\netcoreapp3.1\race simulator.csproj.CoreCompileInputs.cache
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\obj\Debug\netcoreapp3.1\race simulator.csproj.CopyComplete
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\obj\Debug\netcoreapp3.1\race simulator.dll
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\obj\Debug\netcoreapp3.1\race simulator.pdb
+E:\Windesheim\c# les\CSharp-RaceSimulator\race simulator\obj\Debug\netcoreapp3.1\race simulator.genruntimeconfig.cache

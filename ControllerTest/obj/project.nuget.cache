@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7Wo+tn+CoOAdcY64DlaCPobMQFMvUJV5r0aWxfD/azs4IQqJk7Zn8a5Q7ZiNmgxutXxw//tMHqaW8bzj+FwdSg==",
+  "dgSpecHash": "AvTDFmzFjwAmeQTQdHzfcw5VJO3YcSfD/93OXLkj2HhsuliBzWrXVU0JMMiVDhfxfSxgRNgXfl5oYt1nNfT7lw==",
   "success": true,
-  "projectFilePath": "E:\\Windesheim\\c# les\\ControllerTest\\ControllerTest.fsproj",
+  "projectFilePath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\ControllerTest\\ControllerTest.fsproj",
   "expectedPackageFiles": [
     "C:\\Users\\yanic\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
     "C:\\Users\\yanic\\.nuget\\packages\\fsharp.core\\5.0.0\\fsharp.core.5.0.0.nupkg.sha512",

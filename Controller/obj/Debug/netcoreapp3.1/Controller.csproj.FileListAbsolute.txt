@@ -1,0 +1,10 @@
+E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\bin\Debug\netcoreapp3.1\Controller.deps.json
+E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\bin\Debug\netcoreapp3.1\Controller.dll
+E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\bin\Debug\netcoreapp3.1\Controller.pdb
+E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\obj\Debug\netcoreapp3.1\Controller.csproj.AssemblyReference.cache
+E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\obj\Debug\netcoreapp3.1\Controller.GeneratedMSBuildEditorConfig.editorconfig
+E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\obj\Debug\netcoreapp3.1\Controller.AssemblyInfoInputs.cache
+E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\obj\Debug\netcoreapp3.1\Controller.AssemblyInfo.cs
+E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\obj\Debug\netcoreapp3.1\Controller.csproj.CoreCompileInputs.cache
+E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\obj\Debug\netcoreapp3.1\Controller.dll
+E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\obj\Debug\netcoreapp3.1\Controller.pdb
