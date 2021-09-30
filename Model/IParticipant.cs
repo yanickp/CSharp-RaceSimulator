@@ -18,4 +18,5 @@ namespace Model
         IEquipment Equipment { get; set; }
         TeamColors TeamColor { get; set; }
     }
+    
 }

@@ -23,5 +23,13 @@ namespace Model
             this.DistanceRight = disright;
         }
 
+        public SectionData()
+        {
+            this.Left = null;
+            this.Right = null;
+            this.DistanceLeft = -1;
+            this.DistanceRight = -1;
+        }
+
     }
 }

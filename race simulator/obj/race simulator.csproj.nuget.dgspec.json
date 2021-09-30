@@ -27,7 +27,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Model\\Model.csproj": {
+                "projectPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Model\\Model.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
