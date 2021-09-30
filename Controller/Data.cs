@@ -2,7 +2,8 @@
 
 namespace Controller
 {
-    public class Class1
+    public class Data
     {
+        
     }
 }
