@@ -8,3 +8,6 @@ E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\obj\Debug\netcoreapp3.1\Con
 E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\obj\Debug\netcoreapp3.1\Controller.csproj.CoreCompileInputs.cache
 E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\obj\Debug\netcoreapp3.1\Controller.dll
 E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\obj\Debug\netcoreapp3.1\Controller.pdb
+E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\bin\Debug\netcoreapp3.1\Model.dll
+E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\bin\Debug\netcoreapp3.1\Model.pdb
+E:\Windesheim\c# les\CSharp-RaceSimulator\Controller\obj\Debug\netcoreapp3.1\Controller.csproj.CopyComplete
