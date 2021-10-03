@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Controller;
 using Model;
 
@@ -12,6 +13,13 @@ namespace race_simulator
             Data.Initialize();
             Data.NextRace();
             Console.WriteLine(Data.CurrentRace.track.Name);
+            Visualisation.DrawTrack(Data.CurrentRace.track);
+            
+            //game loop
+            // for (; ; )
+            // {
+            //     Thread.Sleep(15000);
+            // }
         }
     }
 }

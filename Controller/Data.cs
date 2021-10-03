@@ -38,15 +38,17 @@ namespace Controller
 
         public static void AddTracks()
         {
-            Section.SectionTypes[] track1Sections = new[]
+            Section.SectionTypes[] track1Sections =
             {
                 Section.SectionTypes.StartGrid,
-                Section.SectionTypes.Straight, 
+                Section.SectionTypes.Straight,
                 Section.SectionTypes.RightCorner,
                 Section.SectionTypes.RightCorner,
                 Section.SectionTypes.Straight,
+                Section.SectionTypes.Straight,
                 Section.SectionTypes.RightCorner,
-                Section.SectionTypes.RightCorner
+                Section.SectionTypes.RightCorner,
+                Section.SectionTypes.Finish
             };
             Track track1 = new Track("zandvoort", track1Sections);
             Track track2 = new Track("barcelona", track1Sections);
@@ -56,7 +58,6 @@ namespace Controller
             Competition.Tracks.Enqueue(track2);
             Competition.Tracks.Enqueue(track3);
             Competition.Tracks.Enqueue(track4);
-            
         }
     }
 }
