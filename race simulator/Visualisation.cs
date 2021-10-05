@@ -9,14 +9,14 @@ namespace race_simulator
     {
         #region graphics
 
-        private static string[] _startHorizontal = {" > ", "---", " > "};
-        private static string[] _startVertical = {" ^ ", " | ", " ^ "};
+        private static string[] _startHorizontal = {"----", " >  ", "  > ", "----"};
+        private static string[] _startVertical = {"|  ", " ^  ", " ^  ", "   |"};
 
-        private static string[] _finishHorizontal = {" X ", "---", " X "};
-        private static string[] _finishVertical = {" X ", " | ", " X "};
+        private static string[] _finishHorizontal = {"----", " X  ", "  X ", "----"};
+        private static string[] _finishVertical = {"|  ", " X   ", " X  ", "   |"};
 
-        private static string[] _straightHorizontal = {" 1 ", "---", " 2 "};
-        private static string[] _straightVertical = {" 1 ", " | ", " 2 "};
+        private static string[] _straightHorizontal = {"----", "    ", "    ", "----"};
+        private static string[] _straightVertical = {"|  ", "    ", "    ", "   |"};
 
         private static string[] _cornerRightHorinzontal = {" 2 ", @" \ ", " 1 "};
         private static string[] _cornerRightVertical = {" 1 ", " / ", " 2 "};
@@ -29,14 +29,13 @@ namespace race_simulator
 
         #endregion
 
-        public static Array[,,] Track3dArray = 
+        public static Array[,] Track3dArray =
+
         {
-            {
-                {_emptySquare, _startHorizontal, _straightHorizontal, _cornerRightHorinzontal},
-                {_emptySquare, _emptySquare, _emptySquare, _emptySquare},
-                {_emptySquare, _emptySquare, _emptySquare, _emptySquare},
-                {_emptySquare, _emptySquare, _emptySquare, _emptySquare}
-            }
+            {_emptySquare, _startHorizontal, _straightHorizontal, _cornerRightHorinzontal},
+            {_emptySquare, _emptySquare, _emptySquare, _emptySquare},
+            {_emptySquare, _emptySquare, _emptySquare, _emptySquare},
+            {_emptySquare, _emptySquare, _emptySquare, _emptySquare}
         };
 
 
@@ -48,8 +47,9 @@ namespace race_simulator
         {
             Draw3dTrackArray(Track3dArray);
         }
+        
 
-        public static void Draw3dTrackArray(Array[,,] arr)
+        public static void Draw3dTrackArray(Array[,] arr)
         {
             //     StringBuilder lijntje = new StringBuilder();
             //     foreach (Array square in arr)
@@ -66,13 +66,14 @@ namespace race_simulator
             // }
             for (int i = 0; i < arr.GetLength(0); i++)
             {
-                for (int j = 0; j < arr.GetLength(1); j++) {
-                    Console.Write("{0} ", arr[i, j, 0]);
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    
+                    Console.Write(arr[i, j].GetValue(1));
                 }
+
                 Console.WriteLine();
             }
-        
-            
         }
 
         public static void FillTrackArray(Track t)
