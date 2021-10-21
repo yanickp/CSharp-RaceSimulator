@@ -15,11 +15,11 @@ namespace race_simulator
             Console.WriteLine(Data.CurrentRace.track.Name);
             Visualisation.DrawTrack(Data.CurrentRace.track);
             
-            //game loop
-            // for (; ; )
-            // {
-            //     Thread.Sleep(15000);
-            // }
+            // game loop
+             // for (; ; )
+             // {
+             //     Thread.Sleep(15000);
+             // }
         }
     }
 }

@@ -31,5 +31,17 @@ namespace Model
             this.DistanceRight = -1;
         }
 
+        public void AddParticipant(IParticipant p)
+        {
+            if (Left == null)
+            {
+                Left = p;
+            }
+            else
+            {
+                Right = p;
+            }
+        }
+
     }
 }

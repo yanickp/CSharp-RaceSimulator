@@ -50,5 +50,16 @@ namespace Controller
             _positions.Add(s, temp);
             return temp;
         }
+
+        public void PlaceParticipants()
+        {
+            var section = this.track.GetStartSection();
+            var SectionData = this.GetSectionData(section);
+            foreach (var participant in Participants)
+            {
+                SectionData.AddParticipant(participant);
+            }
+
+        }
     }
 }

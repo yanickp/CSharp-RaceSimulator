@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
 
 namespace Model
 {
@@ -23,6 +25,18 @@ namespace Model
             }
 
             return Sections;
+        }
+
+        public Section GetStartSection()
+        {
+            return Sections.FirstOrDefault(s => s.SectionType == Section.SectionTypes.StartGrid);
+        }
+
+        public Section GetPReviousSection(Section s)
+        {
+            LinkedListNode<Section> result = Sections.Find(s);
+            LinkedListNode<Section> previousResult = result.Previous;
+            return previousResult.Value;
         }
     }
 }

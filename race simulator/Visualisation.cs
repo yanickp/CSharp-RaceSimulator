@@ -12,30 +12,34 @@ namespace race_simulator
         private static string[] _startHorizontal = {"----", " >  ", "  > ", "----"};
         private static string[] _startVertical = {"|  ", " ^  ", " ^  ", "   |"};
 
-        private static string[] _finishHorizontal = {"----", " X  ", "  X ", "----"};
-        private static string[] _finishVertical = {"|  ", " X   ", " X  ", "   |"};
+        private static string[] _finishHorizontal = {"----", " XX ", " XX ", "----"};
+        private static string[] _finishVertical = {"|  ", " XX  ", " XX ", "   |"};
 
         private static string[] _straightHorizontal = {"----", "    ", "    ", "----"};
-        private static string[] _straightVertical = {"|  ", "    ", "    ", "   |"};
+        private static string[] _straightVertical = {"|  |", "|  |", "|  |", "|  |"};
 
-        private static string[] _cornerRightHorinzontal = {" 2 ", @" \ ", " 1 "};
-        private static string[] _cornerRightVertical = {" 1 ", " / ", " 2 "};
+        private static string[] _cornerRightHorinzontalDown = {@"---\", @"   |", @"   |", @"   |"};
+        private static string[] _cornerRightHorinzontalUp = {@"|  \", @"|   ", @"|   ", @"\---"};
+        
+        private static string[] _cornerRightVertical = {"/---", "|   ", "|   ", "|  /"};
 
 
-        private static string[] _cornerLeftHorizontal = {" 1 ", " / ", " 2 "};
-        private static string[] _cornerLefVertical = {" 1 ", @" \ ", " 2 "};
+        private static string[] _cornerLeftHorizontal = {"  1 ", "  / ", "  2 ", "  3 "};
+        private static string[] _cornerLefVertical = {"/  |", @"   |", "   |", "--/ "};
 
-        private static string[] _emptySquare = {"000", "000", "000"};
+        private static string[] _emptySquare = {"    ", "    ", "    ", "    "};
 
         #endregion
 
         public static Array[,] Track3dArray =
 
         {
-            {_emptySquare, _startHorizontal, _straightHorizontal, _cornerRightHorinzontal},
-            {_emptySquare, _emptySquare, _emptySquare, _emptySquare},
-            {_emptySquare, _emptySquare, _emptySquare, _emptySquare},
-            {_emptySquare, _emptySquare, _emptySquare, _emptySquare}
+            {_cornerRightVertical, _finishHorizontal, _startHorizontal, _straightHorizontal, _straightHorizontal, _straightHorizontal, _straightHorizontal, _cornerRightHorinzontalDown},
+            {_straightVertical, _emptySquare, _emptySquare, _emptySquare, _emptySquare, _emptySquare, _emptySquare, _straightVertical},
+            {_straightVertical, _emptySquare, _emptySquare, _emptySquare, _emptySquare, _emptySquare, _emptySquare, _straightVertical},
+            {_straightVertical, _emptySquare, _emptySquare, _emptySquare, _emptySquare, _emptySquare, _emptySquare, _straightVertical},
+            {_cornerRightHorinzontalUp, _straightHorizontal,_straightHorizontal,_straightHorizontal,_straightHorizontal,_straightHorizontal,_straightHorizontal, _cornerLefVertical},
+            
         };
 
 
@@ -47,7 +51,7 @@ namespace race_simulator
         {
             Draw3dTrackArray(Track3dArray);
         }
-        
+
 
         public static void Draw3dTrackArray(Array[,] arr)
         {
@@ -68,8 +72,28 @@ namespace race_simulator
             {
                 for (int j = 0; j < arr.GetLength(1); j++)
                 {
-                    
+                    Console.Write(arr[i, j].GetValue(0));
+                }
+
+                Console.WriteLine();
+                
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
                     Console.Write(arr[i, j].GetValue(1));
+                }
+
+                Console.WriteLine();
+                
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    Console.Write(arr[i, j].GetValue(2));
+                }
+
+                Console.WriteLine();
+                
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    Console.Write(arr[i, j].GetValue(3));
                 }
 
                 Console.WriteLine();
