@@ -61,8 +61,37 @@ namespace Controller
                 Section.SectionTypes.Straight,
                 Section.SectionTypes.Straight,
             };
+
+            Section.SectionTypes[] track2Sections =
+            {
+                Section.SectionTypes.RightCorner,
+                Section.SectionTypes.StartGrid,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.Finish,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.RightCorner,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.RightCorner,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.RightCorner,
+                Section.SectionTypes.LeftCorner,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.LeftCorner,
+                Section.SectionTypes.Straight,
+                
+                
+                
+                Section.SectionTypes.RightCorner,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.RightCorner,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.Straight
+            };
             
-            Track track1 = new Track("zandvoort", track1Sections);
+            Track track1 = new Track("zandvoort", track2Sections);
             Track track2 = new Track("barcelona", track1Sections);
             Competition.Tracks.Enqueue(track1);
             Competition.Tracks.Enqueue(track2);

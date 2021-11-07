@@ -26,7 +26,7 @@ namespace race_simulator
         private static readonly string[] _RightCorner2 = { "╝  ║", "1 2║", "   ║", "═══╝" };
         private static readonly string[] _RightCorner3 = { "║  ╚", "║1 2", "║   ", "╚═══" };
 
-        private static readonly string[] _LeftCorner0 = { "══\\ ", "   \\", "1 2║", "═  ║" };
+        private static readonly string[] _LeftCorner0 = { "═══╗ ", "   ║", "1 2║", "═  ║" };
         private static readonly string[] _LeftCorner1 = { "═  ║", "1 2║", "    ", "══  " };
         private static readonly string[] _LeftCorner2 = { "║  ═", "║1 2", "\\   ", " \\══" };
         private static readonly string[] _LeftCorner3 = { "╔═══", "║   ", "║1  2", "║  ╔" };
