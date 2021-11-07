@@ -21,7 +21,10 @@ namespace Model
 
             foreach (Section.SectionTypes section in s)
             {
-                Sections.AddLast(new Section(section));
+                Sections.AddLast(new Section()
+                {
+                    SectionType = section
+                });
             }
 
             return Sections;

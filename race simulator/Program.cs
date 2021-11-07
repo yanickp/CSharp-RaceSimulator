@@ -13,13 +13,14 @@ namespace race_simulator
             Data.Initialize();
             Data.NextRace();
             Console.WriteLine(Data.CurrentRace.track.Name);
+            Visualisation.Initialize();
             Visualisation.DrawTrack(Data.CurrentRace.track);
             
             // game loop
-             // for (; ; )
-             // {
-             //     Thread.Sleep(15000);
-             // }
+             for (; ; )
+             {
+                 Thread.Sleep(15000);
+             }
         }
     }
 }

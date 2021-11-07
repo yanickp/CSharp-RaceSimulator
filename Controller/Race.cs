@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Threading;
 using Model;
 
 namespace Controller
@@ -12,6 +13,10 @@ namespace Controller
         public DateTime StartTime { get; set; }
         private Random _random;
         private Dictionary<Section, SectionData> _positions;
+        private readonly Dictionary<IParticipant, int> _rounds;
+        private readonly int DistancePerSection;
+        private readonly int RoundsPerRace;
+
 
         public Race(Track track, List<IParticipant> participants)
         {
@@ -19,6 +24,11 @@ namespace Controller
             Participants = participants;
             this.StartTime = DateTime.Now;
             this._random = new Random(DateTime.Now.Millisecond);
+            this._positions = new Dictionary<Section, SectionData>();
+            _rounds = new Dictionary<IParticipant, int>();
+            DistancePerSection = 100;
+            RoundsPerRace = 2;
+            
         }
 
         public Race(Track track)
@@ -27,6 +37,7 @@ namespace Controller
             Participants = new List<IParticipant>();
             this.StartTime = DateTime.Now;
             this._random = new Random(DateTime.Now.Millisecond);
+            this._positions = new Dictionary<Section, SectionData>();
         }
 
         public void RandomizeEquipmnet()
@@ -41,14 +52,22 @@ namespace Controller
         
         public SectionData GetSectionData(Section s)
         {
-            if (_positions.TryGetValue(s, out SectionData value))
+            
+            if (!_positions.ContainsKey(s))
             {
-                return value;
+                _positions.Add(s, new SectionData());
             }
-            // als er geen data is op die plek nieuwe aanmaken
-            SectionData temp = new SectionData();
-            _positions.Add(s, temp);
-            return temp;
+
+            return _positions[s];
+            
+            // if (_positions.TryGetValue(s, out SectionData value))
+            // {
+            //     return value;
+            // }
+            // // als er geen data is op die plek nieuwe aanmaken
+            // SectionData temp = new SectionData();
+            // _positions.Add(s, temp);
+            // return temp;
         }
 
         public void PlaceParticipants()
