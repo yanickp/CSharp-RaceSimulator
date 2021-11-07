@@ -42,11 +42,22 @@ namespace Controller
             {
                 Section.SectionTypes.StartGrid,
                 Section.SectionTypes.Straight,
-                Section.SectionTypes.RightCorner,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.Straight,
                 Section.SectionTypes.RightCorner,
                 Section.SectionTypes.Straight,
                 Section.SectionTypes.Straight,
                 Section.SectionTypes.RightCorner,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.RightCorner,
+                Section.SectionTypes.Straight,
+                Section.SectionTypes.Straight,
                 Section.SectionTypes.RightCorner,
                 Section.SectionTypes.Finish
             };
