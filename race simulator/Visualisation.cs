@@ -9,33 +9,33 @@ namespace race_simulator
 {
     public static class Visualisation
     {
-               #region graphics
+        #region graphics
 
-        private static readonly string[] _StartGrid0 = { "║  ║", "║--║", "║--║", "║12║" };
-        private static readonly string[] _StartGrid1 = { "════", "1-- ", "2-- ", "════" };
-        private static readonly string[] _StartGrid2 = { "║12║", "║--║", "║--║", "║  ║" };
-        private static readonly string[] _StartGrid3 = { "════", " --1", " --2", "════" };
+        private static readonly string[] _StartGrid0 = {"║  ║", "║--║", "║--║", "║12║"};
+        private static readonly string[] _StartGrid1 = {"════", "1-- ", "2-- ", "════"};
+        private static readonly string[] _StartGrid2 = {"║12║", "║--║", "║--║", "║  ║"};
+        private static readonly string[] _StartGrid3 = {"════", " --1", " --2", "════"};
 
-        private static readonly string[] _Straight0 = { "║  ║", "║12║", "║  ║", "║  ║" };
-        private static readonly string[] _Straight1 = { "════", " 1  ", " 2  ", "════" };
-        private static readonly string[] _Straight2 = { "║  ║", "║  ║", "║12║", "║  ║" };
-        private static readonly string[] _Straight3 = { "════", "  1 ", "  2 ", "════" };
+        private static readonly string[] _Straight0 = {"║  ║", "║12║", "║  ║", "║  ║"};
+        private static readonly string[] _Straight1 = {"════", " 1  ", " 2  ", "════"};
+        private static readonly string[] _Straight2 = {"║  ║", "║  ║", "║12║", "║  ║"};
+        private static readonly string[] _Straight3 = {"════", "  1 ", "  2 ", "════"};
 
-        private static readonly string[] _RightCorner0 = { "╔═══", "║   ", "║1 2", "║  ╔" };
-        private static readonly string[] _RightCorner1 = { "═══╗", "   ║", "1 2║", "╗  ║" };
-        private static readonly string[] _RightCorner2 = { "╝  ║", "1 2║", "   ║", "═══╝" };
-        private static readonly string[] _RightCorner3 = { "║  ╚", "║1 2", "║   ", "╚═══" };
+        private static readonly string[] _RightCorner0 = {"╔═══", "║   ", "║1 2", "║  ╔"};
+        private static readonly string[] _RightCorner1 = {"═══╗", "   ║", "1 2║", "╗  ║"};
+        private static readonly string[] _RightCorner2 = {"╝  ║", "1 2║", "   ║", "═══╝"};
+        private static readonly string[] _RightCorner3 = {"║  ╚", "║1 2", "║   ", "╚═══"};
 
-        private static readonly string[] _LeftCorner0 = { "═══╗ ", "   ║", "1 2║", "═  ║" };
-        private static readonly string[] _LeftCorner1 = { "═  ║", "1 2║", "    ", "══  " };
-        private static readonly string[] _LeftCorner2 = { "║  ═", "║1 2", "\\   ", " \\══" };
-        private static readonly string[] _LeftCorner3 = { "╔═══", "║   ", "║1  2", "║  ╔" };
+        private static readonly string[] _LeftCorner0 = {"═══╗ ", "   ║", "1 2║", "═  ║"};
+        private static readonly string[] _LeftCorner1 = {"═  ║", "1 2║", "   ║", "═══╝"};
+        private static readonly string[] _LeftCorner2 = {"║  ═", "║1 2", "║   ", "╚═══"};
+        private static readonly string[] _LeftCorner3 = {"╔═══", "║   ", "║1  2", "║  ╔"};
 
-        private static readonly string[] _Finish0 = { "║12║", "║##║", "║##║", "║  ║" };
-        private static readonly string[] _Finish1 = { "════", "  #1", "  #2", "════" };
-        private static readonly string[] _Finish2 = { "║  ║", "║##║", "║##║", "║12║" };
-        private static readonly string[] _Finish3 = { "════", " 1# ", " 2# ", "════" };
-            
+        private static readonly string[] _Finish0 = {"║12║", "║##║", "║##║", "║  ║"};
+        private static readonly string[] _Finish1 = {"════", "  #1", "  #2", "════"};
+        private static readonly string[] _Finish2 = {"║  ║", "║##║", "║##║", "║12║"};
+        private static readonly string[] _Finish3 = {"════", " 1# ", " 2# ", "════"};
+
         #endregion graphics
 
         private static int CursorLeft;
@@ -51,15 +51,20 @@ namespace race_simulator
             Graphics = new Dictionary<string, string[]>();
             FillGraphicsDictionary();
 
-            // Data.CurrentRace.DriversChanged += OnDriversChanged;
+            Data.CurrentRace.DriversChanged += OnDriversChanged;
             // Data.CurrentRace.RaceFinished += Data.Competition.OnRaceFinished;
             // Data.CurrentRace.StartNextRace += OnStartNextRace;
         }
 
+        public static void OnDriversChanged(object sender, DriverChangeEventArgs e)
+        {
+            DrawTrack(e.Track);
+        }
+
+
         public static void DrawTrack(Track track)
         {
             Console.Clear();
-
             foreach (Section section in track.Sections)
             {
                 switch (section.SectionType)
@@ -114,7 +119,8 @@ namespace race_simulator
         private static void DrawSection(Section section)
         {
             SectionData sectionData = Data.CurrentRace.GetSectionData(section);
-            string[] lines = AddParticipantsToGraphics(Graphics[$"_{section.SectionType}{CurrentDirection}"], sectionData);
+            string[] lines =
+                AddParticipantsToGraphics(Graphics[$"_{section.SectionType}{CurrentDirection}"], sectionData);
 
             foreach (string line in lines)
             {
@@ -135,14 +141,16 @@ namespace race_simulator
 
             if (sectionData.Left != null)
                 for (int i = 0; i < newGraphics.Length; i++)
-                    newGraphics[i] = newGraphics[i].Replace("1", sectionData.Left.Equipment.IsBroken ? "x" : sectionData.Left.Name.Substring(0, 1));
+                    newGraphics[i] = newGraphics[i].Replace("1",
+                        sectionData.Left.Equipment.IsBroken ? "x" : sectionData.Left.Name.Substring(0, 1));
             else
                 for (int i = 0; i < newGraphics.Length; i++)
                     newGraphics[i] = newGraphics[i].Replace("1", " ");
 
             if (sectionData.Right != null)
                 for (int i = 0; i < newGraphics.Length; i++)
-                    newGraphics[i] = newGraphics[i].Replace("2", sectionData.Right.Equipment.IsBroken ? "x" : sectionData.Right.Name.Substring(0, 1));
+                    newGraphics[i] = newGraphics[i].Replace("2",
+                        sectionData.Right.Equipment.IsBroken ? "x" : sectionData.Right.Name.Substring(0, 1));
             else
                 for (int i = 0; i < newGraphics.Length; i++)
                     newGraphics[i] = newGraphics[i].Replace("2", " ");

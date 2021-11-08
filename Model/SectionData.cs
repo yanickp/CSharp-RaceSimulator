@@ -5,11 +5,6 @@ namespace Model
 {
     public class SectionData
     {
-     
-        public string Name { get; set; }
-        public int Points { get; set; }
-        public IEquipment Equipment { get; set; }
-        public IParticipant.TeamColors TeamColor { get; set; }
         
         public IParticipant Left { get; set; }
         public int DistanceLeft { get; set; }
@@ -28,8 +23,8 @@ namespace Model
         {
             this.Left = null;
             this.Right = null;
-            this.DistanceLeft = -1;
-            this.DistanceRight = -1;
+            this.DistanceLeft = 0;
+            this.DistanceRight = 0;
         }
         public SectionData(IParticipant left, int DistanceLeft, IParticipant right, int DistanceRight)
         {
@@ -39,16 +34,22 @@ namespace Model
             this.DistanceRight = DistanceRight;
         }
 
-        public void AddParticipant(IParticipant p)
+        public bool AddParticipant(IParticipant p)
         {
             if (Left == null)
             {
                 Left = p;
+                DistanceLeft = 0;
+                return true;
             }
-            else
+            if(Right == null)
             {
                 Right = p;
+                DistanceRight = 0;
+                return true;
             }
+
+            return false;
         }
 
     }
