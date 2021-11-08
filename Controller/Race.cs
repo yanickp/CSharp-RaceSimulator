@@ -8,6 +8,10 @@ using Timer = System.Timers.Timer;
 
 public delegate void OnDriversChanged(object sender, DriverChangeEventArgs e);
 
+public delegate void OnRaceIsFinished(object sender, RaceFinishedEventArgs e);
+
+public delegate void OnNextRace(object sender, EventArgs e);
+
 
 namespace Controller
 {
@@ -16,7 +20,9 @@ namespace Controller
         public Track track { get; set; }
         public List<IParticipant> Participants { get; set; }
         public DateTime StartTime { get; set; }
-        private readonly Stack<IParticipant> FinishedParticipants;
+
+
+        private readonly Queue<IParticipant> FinishedParticipants;
         private Random _random;
         private Dictionary<Section, SectionData> _positions;
         private readonly Dictionary<IParticipant, int> _rounds;
@@ -25,6 +31,8 @@ namespace Controller
         private static Timer _timer;
 
         public event OnDriversChanged DriversChanged;
+        public event OnRaceIsFinished RaceIsFinnished;
+        public event OnNextRace NextRace;
 
 
         public Race(Track track, List<IParticipant> participants)
@@ -34,10 +42,10 @@ namespace Controller
             this.StartTime = DateTime.Now;
             this._random = new Random(Seed: DateTime.Now.Millisecond);
             this._positions = new Dictionary<Section, SectionData>();
-            FinishedParticipants = new Stack<IParticipant>();
+            FinishedParticipants = new Queue<IParticipant>();
             _rounds = new Dictionary<IParticipant, int>();
-            DistancePerSection = 150;
-            RoundsPerRace = 3;
+            DistancePerSection = 70;
+            RoundsPerRace = 2;
             _timer = new Timer(500);
 
             _timer.Elapsed += onTimedEvent;
@@ -59,25 +67,55 @@ namespace Controller
             StartTime = DateTime.Now;
         }
 
-        private void Stop()
+        private void EndRace()
         {
             _timer.Stop();
-
             _timer.Elapsed -= onTimedEvent;
+
+            RaceIsFinnished?.Invoke(this, new RaceFinishedEventArgs(FinishedParticipants));
+            NextRace?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void RandomizeEquipmentIsBroken(IParticipant p)
+        {
+            //todo bij niuwe race de stats terug zetten.
+            if (_random.Next(1000) == 1)
+            {
+                p.Equipment.IsBroken = true;
+            }
+
+            if (p.Equipment.IsBroken)
+            {
+                if (_random.Next(20) == 1)
+                {
+                    p.Equipment.IsBroken = false;
+                    if (p.Equipment.Speed >= 5)
+                    {
+                        p.Equipment.Speed--;
+                    }
+                    else
+                    {
+                        if (p.Equipment.Preformance > 5)
+                        {
+                            p.Equipment.Preformance--;
+                        }
+                    }
+                }
+            }
         }
 
         private void onTimedEvent(object sender, ElapsedEventArgs e)
         {
             _timer.Stop();
-
             foreach (Section section in track.Sections)
             {
+
                 SectionData sectionData = GetSectionData(section);
 
                 foreach (IParticipant participant in Participants)
                 {
-                    // if (section.SectionType != Section.SectionTypes.StartGrid && section.SectionType != Section.SectionTypes.Finish)
-                    //     RandomizeEquipmentIsBroken();
+                    if (section.SectionType != Section.SectionTypes.StartGrid && section.SectionType != Section.SectionTypes.Finish)
+                        RandomizeEquipmentIsBroken(participant);
 
                     int speed = participant.Equipment.Preformance * participant.Equipment.Speed;
 
@@ -120,7 +158,7 @@ namespace Controller
                                             nextSectionData.Left = null;
                                             nextSectionData.DistanceLeft = 0;
 
-                                            FinishedParticipants.Push(participant);
+                                            FinishedParticipants.Enqueue(participant);
                                         }
                                     }
 
@@ -152,7 +190,8 @@ namespace Controller
                                         //makes sure the next section has room for a driver, else he has to wait at the current section
                                         if (nextSectionData.AddParticipant(participant))
                                         {
-                                            nextSectionData.DistanceRight = sectionData.DistanceRight - DistancePerSection;
+                                            nextSectionData.DistanceRight =
+                                                sectionData.DistanceRight - DistancePerSection;
                                             sectionData.Right = null;
                                             sectionData.DistanceRight = 0;
                                         }
@@ -172,7 +211,7 @@ namespace Controller
                                             nextSectionData.Right = null;
                                             nextSectionData.DistanceRight = 0;
 
-                                            FinishedParticipants.Push(participant);
+                                            FinishedParticipants.Enqueue(participant);
                                         }
                                     }
 
@@ -190,11 +229,10 @@ namespace Controller
 
             DriversChanged?.Invoke(this, new DriverChangeEventArgs(track, Participants));
 
+
             if (FinishedParticipants.Count == Participants.Count)
             {
-                Stop();
-                Console.Clear();
-                Console.WriteLine("race is gefinished");
+                EndRace();
             }
 
             _timer.Start();

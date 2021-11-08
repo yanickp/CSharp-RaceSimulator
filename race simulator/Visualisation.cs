@@ -52,8 +52,8 @@ namespace race_simulator
             FillGraphicsDictionary();
 
             Data.CurrentRace.DriversChanged += OnDriversChanged;
-            // Data.CurrentRace.RaceFinished += Data.Competition.OnRaceFinished;
-            // Data.CurrentRace.StartNextRace += OnStartNextRace;
+            Data.CurrentRace.RaceIsFinnished += Data.Competition.OnRaceIsFinished;
+            Data.CurrentRace.NextRace += StartNextRace;
         }
 
         public static void OnDriversChanged(object sender, DriverChangeEventArgs e)
@@ -97,23 +97,19 @@ namespace race_simulator
             }
         }
 
-        // public static void OnDriversChanged(object sender, DriversChangedEventArgs e)
-        // {
-        //     DrawTrack(e.Track);
-        // }
 
-        public static void OnStartNextRace(object sender, EventArgs e)
+        public static void StartNextRace(object sender, EventArgs e)
         {
-            // Data.CurrentRace.DriversChanged -= OnDriversChanged;
-            // Data.CurrentRace.RaceFinished -= Data.Competition.OnRaceFinished;
-            // Data.CurrentRace.StartNextRace -= OnStartNextRace;
+            Data.CurrentRace.DriversChanged -= OnDriversChanged;
+            Data.CurrentRace.RaceIsFinnished -= Data.Competition.OnRaceIsFinished;
+            Data.CurrentRace.NextRace -= StartNextRace;
 
-            // Data.NextRace();
-            // if (Data.CurrentRace != null)
-            // {
-            //     Initialize();
-            //     DrawTrack(Data.CurrentRace.Track);
-            // }
+            Data.NextRace();
+            if (Data.CurrentRace != null)
+            {
+                Initialize();
+                DrawTrack(Data.CurrentRace.track);
+            }
         }
 
         private static void DrawSection(Section section)
@@ -132,6 +128,7 @@ namespace race_simulator
             CursorLeft -= 4;
         }
 
+//todo refactor
         private static string[] AddParticipantsToGraphics(string[] graphics, SectionData sectionData)
         {
             string[] newGraphics = new string[graphics.Length];
@@ -172,6 +169,7 @@ namespace race_simulator
 
         private static void FillGraphicsDictionary()
         {
+            //todo refactor
             Graphics.Add("_StartGrid0", _StartGrid0);
             Graphics.Add("_StartGrid1", _StartGrid1);
             Graphics.Add("_StartGrid2", _StartGrid2);

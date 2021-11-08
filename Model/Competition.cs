@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 
 namespace Model
 {
@@ -15,16 +18,18 @@ namespace Model
             this.Tracks = new Queue<Track>();
         }
 
+        public void OnRaceIsFinished(object sender, RaceFinishedEventArgs e)
+        {
+            //award points
+            Console.Clear();
+            Console.WriteLine("Race finnished");
+            Console.WriteLine($"{e.FinishedParticipants.Dequeue().Name} heeft gewonnen");
+            Thread.Sleep(1000);
+        }
+
         public Track NextTrack()
         {
-            if (Tracks.Count != 0)
-            {
-                return Tracks.Dequeue();
-            }
-            else
-            {
-                return null;
-            }
+            return Tracks.Any() ? Tracks.Dequeue() : null;
         }
     }
 }

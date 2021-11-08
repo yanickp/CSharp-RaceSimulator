@@ -19,7 +19,7 @@ namespace race_simulator
             // game loop
              for (; ; )
              {
-                 Thread.Sleep(15000);
+                 Thread.Sleep(100);
              }
         }
     }

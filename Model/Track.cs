@@ -38,7 +38,8 @@ namespace Model
         public Section GetPReviousSection(Section s)
         {
             LinkedListNode<Section> result = Sections.Find(s);
-            LinkedListNode<Section> previousResult = result.Previous;
+            LinkedListNode<Section> previousResult = result.Previous ?? result.List.Last;
+            // LinkedListNode<Section> previousResult = result.Previous;
             return previousResult.Value;
         }
     }
