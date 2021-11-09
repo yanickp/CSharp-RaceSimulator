@@ -44,12 +44,13 @@ namespace Controller
             this._positions = new Dictionary<Section, SectionData>();
             FinishedParticipants = new Queue<IParticipant>();
             _rounds = new Dictionary<IParticipant, int>();
-            DistancePerSection = 70;
+            DistancePerSection = 50;
             RoundsPerRace = 2;
             _timer = new Timer(500);
 
             _timer.Elapsed += onTimedEvent;
 
+            ResetParticipantsStats();
             PlaceParticipants();
 
             //sets the count of the finnished rounds for each perticipant
@@ -59,6 +60,17 @@ namespace Controller
             }
 
             Start();
+        }
+
+        private void ResetParticipantsStats()
+        {
+            foreach (var p in Participants)
+            {
+                p.Equipment.Preformance = p.Equipment.startPreformance;
+                p.Equipment.Speed = p.Equipment.startSpeed;
+                p.Equipment.Quality = p.Equipment.startQuality;
+                p.Equipment.IsBroken = false;
+            }
         }
 
         private void Start()
@@ -76,26 +88,25 @@ namespace Controller
             NextRace?.Invoke(this, EventArgs.Empty);
         }
 
-        private void RandomizeEquipmentIsBroken(IParticipant p)
+        private void ChangeToBreakEquipment(IParticipant p)
         {
-            //todo bij niuwe race de stats terug zetten.
-            if (_random.Next(1000) == 1)
+            if (_random.Next(1500) <= (11 - p.Equipment.Quality))
             {
                 p.Equipment.IsBroken = true;
             }
 
             if (p.Equipment.IsBroken)
             {
-                if (_random.Next(20) == 1)
+                if (_random.Next(300) >= 300 - p.Equipment.Quality)
                 {
                     p.Equipment.IsBroken = false;
-                    if (p.Equipment.Speed >= 5)
+                    if (p.Equipment.Speed >= 6)
                     {
                         p.Equipment.Speed--;
                     }
                     else
                     {
-                        if (p.Equipment.Preformance > 5)
+                        if (p.Equipment.Preformance > 6)
                         {
                             p.Equipment.Preformance--;
                         }
@@ -115,11 +126,11 @@ namespace Controller
                 foreach (IParticipant participant in Participants)
                 {
                     if (section.SectionType != Section.SectionTypes.StartGrid && section.SectionType != Section.SectionTypes.Finish)
-                        RandomizeEquipmentIsBroken(participant);
+                        ChangeToBreakEquipment(participant);
 
                     int speed = participant.Equipment.Preformance * participant.Equipment.Speed;
 
-                    if (sectionData.Left != null)
+                    if (sectionData.Left == null) continue;
                     {
                         if (sectionData.Left.Equals(participant))
                         {
@@ -161,68 +172,47 @@ namespace Controller
                                             FinishedParticipants.Enqueue(participant);
                                         }
                                     }
-
-                                    // SaveParticipantSectionTime(section, participant, e);
                                 }
-                            }
-                            else
-                            {
-                                // SetTimeBroken(participant, e);
                             }
                         }
                     }
 
-                    if (sectionData.Right != null)
+                    if (sectionData.Right == null) continue;
                     {
-                        if (sectionData.Right.Equals(participant))
+                        if (!sectionData.Right.Equals(participant)) continue;
+                        if (participant.Equipment.IsBroken) continue;
+                        sectionData.DistanceRight += speed;
+
+                        if (sectionData.DistanceRight < DistancePerSection) continue;
+                        var next = track.Sections.Find(section)?.Next;
+                        if (track.Sections.First == null) continue;
+                        
+                        Section nextSection = next != null ? next.Value : track.Sections.First.Value;
+                        SectionData nextSectionData = GetSectionData(nextSection);
+                        //makes sure the next section has room for a driver, else he has to wait at the current section
+                        if (nextSectionData.AddParticipant(participant))
                         {
-                            if (!participant.Equipment.IsBroken)
-                            {
-                                sectionData.DistanceRight += speed;
-
-                                if (sectionData.DistanceRight >= DistancePerSection)
-                                {
-                                    var next = track.Sections.Find(section)?.Next;
-                                    if (track.Sections.First != null)
-                                    {
-                                        Section nextSection = next != null ? next.Value : track.Sections.First.Value;
-                                        SectionData nextSectionData = GetSectionData(nextSection);
-                                        //makes sure the next section has room for a driver, else he has to wait at the current section
-                                        if (nextSectionData.AddParticipant(participant))
-                                        {
-                                            nextSectionData.DistanceRight =
-                                                sectionData.DistanceRight - DistancePerSection;
-                                            sectionData.Right = null;
-                                            sectionData.DistanceRight = 0;
-                                        }
-                                        else
-                                        {
-                                            sectionData.DistanceRight = DistancePerSection;
-                                        }
-
-                                        if (section.SectionType == Section.SectionTypes.Finish)
-                                            _rounds[participant]++;
-
-                                        if (_rounds[participant] > RoundsPerRace)
-                                        {
-                                            sectionData.Right = null;
-                                            sectionData.DistanceRight = 0;
-
-                                            nextSectionData.Right = null;
-                                            nextSectionData.DistanceRight = 0;
-
-                                            FinishedParticipants.Enqueue(participant);
-                                        }
-                                    }
-
-                                    // SaveParticipantSectionTime(section, participant, e);
-                                }
-                            }
-                            else
-                            {
-                                // SetTimeBroken(participant, e);
-                            }
+                            nextSectionData.DistanceRight =
+                                sectionData.DistanceRight - DistancePerSection;
+                            sectionData.Right = null;
+                            sectionData.DistanceRight = 0;
                         }
+                        else
+                        {
+                            sectionData.DistanceRight = DistancePerSection;
+                        }
+
+                        if (section.SectionType == Section.SectionTypes.Finish)
+                            _rounds[participant]++;
+
+                        if (_rounds[participant] <= RoundsPerRace) continue;
+                        sectionData.Right = null;
+                        sectionData.DistanceRight = 0;
+
+                        nextSectionData.Right = null;
+                        nextSectionData.DistanceRight = 0;
+
+                        FinishedParticipants.Enqueue(participant);
                     }
                 }
             }
@@ -243,17 +233,7 @@ namespace Controller
         public Race(Track track) : this(track, new List<IParticipant>())
         {
         }
-
-        public void RandomizeEquipmnet()
-        {
-            Random rnd = new Random();
-            foreach (IParticipant participant in Participants)
-            {
-                participant.Equipment.Preformance = rnd.Next(10);
-                participant.Equipment.Quality = rnd.Next(10);
-            }
-        }
-
+        
         public SectionData GetSectionData(Section s)
         {
             if (!_positions.ContainsKey(s))
@@ -264,7 +244,7 @@ namespace Controller
             return _positions[s];
         }
 
-        public void PlaceParticipants()
+        private void PlaceParticipants()
         {
             //able to add up to infinite drivers!
             Section startSection = track.GetStartSection();

@@ -38,18 +38,18 @@ namespace race_simulator
 
         #endregion graphics
 
-        private static int CursorLeft;
-        private static int CursorTop;
-        private static int CurrentDirection;
-        private static Dictionary<string, string[]> Graphics;
+        private static int XOffset;
+        private static int YOffset;
+        private static int Compas;
+        private static Dictionary<string, string[]> trackDictionary;
 
         public static void Initialize()
         {
-            CursorLeft = Console.CursorLeft;
-            CursorTop = Console.CursorTop;
-            CurrentDirection = 0;
-            Graphics = new Dictionary<string, string[]>();
-            FillGraphicsDictionary();
+            XOffset = Console.CursorLeft;
+            YOffset = Console.CursorTop;
+            Compas = 0;
+            trackDictionary = new Dictionary<string, string[]>();
+            MakeTrackDictionary();
 
             Data.CurrentRace.DriversChanged += OnDriversChanged;
             Data.CurrentRace.RaceIsFinnished += Data.Competition.OnRaceIsFinished;
@@ -72,9 +72,9 @@ namespace race_simulator
                     case Section.SectionTypes.LeftCorner:
                         DrawSection(section);
 
-                        CurrentDirection--;
-                        if (CurrentDirection == -1)
-                            CurrentDirection = 3;
+                        Compas--;
+                        if (Compas == -1)
+                            Compas = 3;
 
                         UpdateCursorPosition();
                         break;
@@ -82,9 +82,9 @@ namespace race_simulator
                     case Section.SectionTypes.RightCorner:
                         DrawSection(section);
 
-                        CurrentDirection++;
-                        if (CurrentDirection == 4)
-                            CurrentDirection = 0;
+                        Compas++;
+                        if (Compas == 4)
+                            Compas = 0;
 
                         UpdateCursorPosition();
                         break;
@@ -98,102 +98,105 @@ namespace race_simulator
         }
 
 
-        public static void StartNextRace(object sender, EventArgs e)
+        private static void StartNextRace(object sender, EventArgs e)
         {
             Data.CurrentRace.DriversChanged -= OnDriversChanged;
             Data.CurrentRace.RaceIsFinnished -= Data.Competition.OnRaceIsFinished;
             Data.CurrentRace.NextRace -= StartNextRace;
 
             Data.NextRace();
-            if (Data.CurrentRace != null)
-            {
-                Initialize();
-                DrawTrack(Data.CurrentRace.track);
-            }
+            if (Data.CurrentRace == null) return;
+            Initialize();
+            DrawTrack(Data.CurrentRace.track);
         }
 
         private static void DrawSection(Section section)
         {
             SectionData sectionData = Data.CurrentRace.GetSectionData(section);
             string[] lines =
-                AddParticipantsToGraphics(Graphics[$"_{section.SectionType}{CurrentDirection}"], sectionData);
+                DrawParticipants(trackDictionary[$"_{section.SectionType}{Compas}"], sectionData);
 
             foreach (string line in lines)
             {
-                Console.SetCursorPosition(CursorTop, CursorLeft);
+                Console.SetCursorPosition(YOffset, XOffset);
                 Console.Write(line);
-                CursorLeft++;
+                XOffset++;
             }
 
-            CursorLeft -= 4;
+            XOffset -= 4;
         }
 
-//todo refactor
-        private static string[] AddParticipantsToGraphics(string[] graphics, SectionData sectionData)
+        private static string[] DrawParticipants(string[] trackArray, SectionData sectionData)
         {
-            string[] newGraphics = new string[graphics.Length];
+            string[] newTrackArray = new string[trackArray.Length];
 
-            for (int i = 0; i < graphics.Length; i++)
-                newGraphics[i] = graphics[i];
+            for (int i = 0; i < trackArray.Length; i++)
+                newTrackArray[i] = trackArray[i];
 
             if (sectionData.Left != null)
-                for (int i = 0; i < newGraphics.Length; i++)
-                    newGraphics[i] = newGraphics[i].Replace("1",
-                        sectionData.Left.Equipment.IsBroken ? "x" : sectionData.Left.Name.Substring(0, 1));
+                for (int i = 0; i < newTrackArray.Length; i++)
+                    newTrackArray[i] = newTrackArray[i].Replace("1",
+                        sectionData.Left.Equipment.IsBroken ? "*" : sectionData.Left.Name[..1]);
             else
-                for (int i = 0; i < newGraphics.Length; i++)
-                    newGraphics[i] = newGraphics[i].Replace("1", " ");
+                for (int i = 0; i < newTrackArray.Length; i++)
+                    newTrackArray[i] = newTrackArray[i].Replace("1", " ");
 
             if (sectionData.Right != null)
-                for (int i = 0; i < newGraphics.Length; i++)
-                    newGraphics[i] = newGraphics[i].Replace("2",
-                        sectionData.Right.Equipment.IsBroken ? "x" : sectionData.Right.Name.Substring(0, 1));
+                for (int i = 0; i < newTrackArray.Length; i++)
+                    newTrackArray[i] = newTrackArray[i].Replace("2",
+                        sectionData.Right.Equipment.IsBroken ? "*" : sectionData.Right.Name[..1]);
             else
-                for (int i = 0; i < newGraphics.Length; i++)
-                    newGraphics[i] = newGraphics[i].Replace("2", " ");
+                for (int i = 0; i < newTrackArray.Length; i++)
+                    newTrackArray[i] = newTrackArray[i].Replace("2", " ");
 
-            return newGraphics;
+            return newTrackArray;
         }
 
         private static void UpdateCursorPosition()
         {
-            if (CurrentDirection == 0)
-                CursorLeft -= 4;
-            else if (CurrentDirection == 1)
-                CursorTop += 4;
-            else if (CurrentDirection == 2)
-                CursorLeft += 4;
-            else if (CurrentDirection == 3)
-                CursorTop -= 4;
+            switch (Compas)
+            {
+                case 0:
+                    XOffset -= 4;
+                    break;
+                case 1:
+                    YOffset += 4;
+                    break;
+                case 2:
+                    XOffset += 4;
+                    break;
+                case 3:
+                    YOffset -= 4;
+                    break;
+            }
         }
 
-        private static void FillGraphicsDictionary()
+        private static void MakeTrackDictionary()
         {
-            //todo refactor
-            Graphics.Add("_StartGrid0", _StartGrid0);
-            Graphics.Add("_StartGrid1", _StartGrid1);
-            Graphics.Add("_StartGrid2", _StartGrid2);
-            Graphics.Add("_StartGrid3", _StartGrid3);
+            trackDictionary.Add("_StartGrid0", _StartGrid0);
+            trackDictionary.Add("_StartGrid1", _StartGrid1);
+            trackDictionary.Add("_StartGrid2", _StartGrid2);
+            trackDictionary.Add("_StartGrid3", _StartGrid3);
 
-            Graphics.Add("_Straight0", _Straight0);
-            Graphics.Add("_Straight1", _Straight1);
-            Graphics.Add("_Straight2", _Straight2);
-            Graphics.Add("_Straight3", _Straight3);
+            trackDictionary.Add("_Straight0", _Straight0);
+            trackDictionary.Add("_Straight1", _Straight1);
+            trackDictionary.Add("_Straight2", _Straight2);
+            trackDictionary.Add("_Straight3", _Straight3);
 
-            Graphics.Add("_RightCorner0", _RightCorner0);
-            Graphics.Add("_RightCorner1", _RightCorner1);
-            Graphics.Add("_RightCorner2", _RightCorner2);
-            Graphics.Add("_RightCorner3", _RightCorner3);
+            trackDictionary.Add("_RightCorner0", _RightCorner0);
+            trackDictionary.Add("_RightCorner1", _RightCorner1);
+            trackDictionary.Add("_RightCorner2", _RightCorner2);
+            trackDictionary.Add("_RightCorner3", _RightCorner3);
 
-            Graphics.Add("_LeftCorner0", _LeftCorner0);
-            Graphics.Add("_LeftCorner1", _LeftCorner1);
-            Graphics.Add("_LeftCorner2", _LeftCorner2);
-            Graphics.Add("_LeftCorner3", _LeftCorner3);
+            trackDictionary.Add("_LeftCorner0", _LeftCorner0);
+            trackDictionary.Add("_LeftCorner1", _LeftCorner1);
+            trackDictionary.Add("_LeftCorner2", _LeftCorner2);
+            trackDictionary.Add("_LeftCorner3", _LeftCorner3);
 
-            Graphics.Add("_Finish0", _Finish0);
-            Graphics.Add("_Finish1", _Finish1);
-            Graphics.Add("_Finish2", _Finish2);
-            Graphics.Add("_Finish3", _Finish3);
+            trackDictionary.Add("_Finish0", _Finish0);
+            trackDictionary.Add("_Finish1", _Finish1);
+            trackDictionary.Add("_Finish2", _Finish2);
+            trackDictionary.Add("_Finish3", _Finish3);
         }
     }
 }
