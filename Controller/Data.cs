@@ -16,7 +16,7 @@ namespace Controller
         {
             _random = new Random();
             Competition = new Competition("eerste compitition");
-            AddParticipants(5);
+            AddParticipants(3);
             AddTracks();
         }
 
@@ -47,7 +47,7 @@ namespace Controller
 
             for (int i = 0; i < amount; i++)
             {
-                Car car = new Car(_random.Next(5, 11), _random.Next(7, 10), _random.Next(5, 8), false);
+                Car car = new Car(_random.Next(1, 20), _random.Next(8, 12), _random.Next(8, 10), false);
                 string name = names[i];
                 IParticipant.TeamColors team = teams[i];
                 IParticipant driver = new Driver(name, 0, team, car);
@@ -84,11 +84,11 @@ namespace Controller
                 Section.SectionTypes.Straight,
                 Section.SectionTypes.LeftCorner,
                 Section.SectionTypes.RightCorner,
-                Section.SectionTypes.StartGrid,
+                Section.SectionTypes.Straight,
                 Section.SectionTypes.RightCorner,
 
+                Section.SectionTypes.StartGrid,
                 Section.SectionTypes.Finish,
-                Section.SectionTypes.Straight,
             };
 
             #endregion
@@ -98,13 +98,13 @@ namespace Controller
             Section.SectionTypes[] track2Sections =
             {
                 Section.SectionTypes.RightCorner,
-                Section.SectionTypes.Finish,
-                Section.SectionTypes.Straight,
                 Section.SectionTypes.StartGrid,
                 Section.SectionTypes.Straight,
+                Section.SectionTypes.Finish,
                 Section.SectionTypes.Straight,
                 Section.SectionTypes.Straight,
                 Section.SectionTypes.RightCorner,
+                Section.SectionTypes.Straight,
                 Section.SectionTypes.Straight,
                 Section.SectionTypes.RightCorner,
                 Section.SectionTypes.Straight,
@@ -113,14 +113,12 @@ namespace Controller
                 Section.SectionTypes.Straight,
                 Section.SectionTypes.LeftCorner,
                 Section.SectionTypes.Straight,
-
-
+                Section.SectionTypes.RightCorner,
+                Section.SectionTypes.Straight,
                 Section.SectionTypes.RightCorner,
                 Section.SectionTypes.Straight,
                 Section.SectionTypes.Straight,
-                Section.SectionTypes.RightCorner,
                 Section.SectionTypes.Straight,
-                Section.SectionTypes.Straight
             };
 
             #endregion

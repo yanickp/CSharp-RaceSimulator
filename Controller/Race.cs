@@ -44,7 +44,7 @@ namespace Controller
             this._positions = new Dictionary<Section, SectionData>();
             FinishedParticipants = new Queue<IParticipant>();
             _rounds = new Dictionary<IParticipant, int>();
-            DistancePerSection = 50;
+            DistancePerSection = 121;
             RoundsPerRace = 2;
             _timer = new Timer(500);
 
@@ -118,19 +118,21 @@ namespace Controller
         private void onTimedEvent(object sender, ElapsedEventArgs e)
         {
             _timer.Stop();
+            bool arleadyFinished = false;
             foreach (Section section in track.Sections)
             {
-
                 SectionData sectionData = GetSectionData(section);
 
                 foreach (IParticipant participant in Participants)
                 {
-                    if (section.SectionType != Section.SectionTypes.StartGrid && section.SectionType != Section.SectionTypes.Finish)
+                    arleadyFinished = false;
+                    if (section.SectionType != Section.SectionTypes.StartGrid &&
+                        section.SectionType != Section.SectionTypes.Finish)
                         ChangeToBreakEquipment(participant);
 
                     int speed = participant.Equipment.Preformance * participant.Equipment.Speed;
 
-                    if (sectionData.Left == null) continue;
+                    if (sectionData.Left != null)
                     {
                         if (sectionData.Left.Equals(participant))
                         {
@@ -169,7 +171,11 @@ namespace Controller
                                             nextSectionData.Left = null;
                                             nextSectionData.DistanceLeft = 0;
 
-                                            FinishedParticipants.Enqueue(participant);
+                                            if (!arleadyFinished)
+                                            {
+                                                FinishedParticipants.Enqueue(participant);
+                                                arleadyFinished = true;
+                                            }
                                         }
                                     }
                                 }
@@ -186,7 +192,7 @@ namespace Controller
                         if (sectionData.DistanceRight < DistancePerSection) continue;
                         var next = track.Sections.Find(section)?.Next;
                         if (track.Sections.First == null) continue;
-                        
+
                         Section nextSection = next != null ? next.Value : track.Sections.First.Value;
                         SectionData nextSectionData = GetSectionData(nextSection);
                         //makes sure the next section has room for a driver, else he has to wait at the current section
@@ -214,6 +220,55 @@ namespace Controller
 
                         FinishedParticipants.Enqueue(participant);
                     }
+                    if (sectionData.Right != null)
+                    {
+                        if (sectionData.Right.Equals(participant))
+                        {
+                            if (!participant.Equipment.IsBroken)
+                            {
+                                sectionData.DistanceRight += speed;
+
+                                if (sectionData.DistanceRight >= DistancePerSection)
+                                {
+                                    var next = track.Sections.Find(section)?.Next;
+                                    if (track.Sections.First != null)
+                                    {
+                                        Section nextSection = next != null ? next.Value : track.Sections.First.Value;
+                                        SectionData nextSectionData = GetSectionData(nextSection);
+                                        //makes sure the next section has room for a driver, else he has to wait at the current section
+                                        if (nextSectionData.AddParticipant(participant))
+                                        {
+                                            nextSectionData.DistanceRight =
+                                                sectionData.DistanceRight - DistancePerSection;
+                                            sectionData.Right = null;
+                                            sectionData.DistanceRight = 0;
+                                        }
+                                        else
+                                        {
+                                            sectionData.DistanceRight = DistancePerSection;
+                                        }
+
+                                        if (section.SectionType == Section.SectionTypes.Finish)
+                                            _rounds[participant]++;
+
+                                        if (_rounds[participant] > RoundsPerRace)
+                                        {
+                                            sectionData.Right = null;
+                                            sectionData.DistanceRight = 0;
+
+                                            nextSectionData.Right = null;
+                                            nextSectionData.DistanceRight = 0;
+                                            if (!arleadyFinished)
+                                            {
+                                                FinishedParticipants.Enqueue(participant);
+                                                arleadyFinished = true;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
@@ -233,7 +288,7 @@ namespace Controller
         public Race(Track track) : this(track, new List<IParticipant>())
         {
         }
-        
+
         public SectionData GetSectionData(Section s)
         {
             if (!_positions.ContainsKey(s))
