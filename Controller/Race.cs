@@ -44,7 +44,7 @@ namespace Controller
             this._positions = new Dictionary<Section, SectionData>();
             FinishedParticipants = new Queue<IParticipant>();
             _rounds = new Dictionary<IParticipant, int>();
-            DistancePerSection = 121;
+            DistancePerSection = 100;
             RoundsPerRace = 2;
             _timer = new Timer(500);
 
@@ -54,7 +54,7 @@ namespace Controller
             PlaceParticipants();
 
             //sets the count of the finnished rounds for each perticipant
-            foreach (var p in Participants)
+            foreach (IParticipant p in Participants)
             {
                 _rounds.Add(p, 0);
             }
@@ -90,7 +90,7 @@ namespace Controller
 
         private void ChangeToBreakEquipment(IParticipant p)
         {
-            if (_random.Next(1500) <= (11 - p.Equipment.Quality))
+            if (_random.Next(1500) <= (21 - p.Equipment.Quality))
             {
                 p.Equipment.IsBroken = true;
             }
@@ -100,13 +100,13 @@ namespace Controller
                 if (_random.Next(300) >= 300 - p.Equipment.Quality)
                 {
                     p.Equipment.IsBroken = false;
-                    if (p.Equipment.Speed >= 6)
+                    if (p.Equipment.Speed > 8)
                     {
                         p.Equipment.Speed--;
                     }
                     else
                     {
-                        if (p.Equipment.Preformance > 6)
+                        if (p.Equipment.Preformance >= 8)
                         {
                             p.Equipment.Preformance--;
                         }
@@ -154,14 +154,14 @@ namespace Controller
                                                 sectionData.DistanceLeft - DistancePerSection;
                                             sectionData.Left = null;
                                             sectionData.DistanceLeft = 0;
+                                            if (section.SectionType == Section.SectionTypes.Finish)
+                                                _rounds[participant]++;
                                         }
                                         else
                                         {
                                             sectionData.DistanceLeft = DistancePerSection;
                                         }
 
-                                        if (section.SectionType == Section.SectionTypes.Finish)
-                                            _rounds[participant]++;
 
                                         if (_rounds[participant] > RoundsPerRace)
                                         {
@@ -202,14 +202,14 @@ namespace Controller
                                 sectionData.DistanceRight - DistancePerSection;
                             sectionData.Right = null;
                             sectionData.DistanceRight = 0;
+                            if (section.SectionType == Section.SectionTypes.Finish)
+                                _rounds[participant]++;
                         }
                         else
                         {
                             sectionData.DistanceRight = DistancePerSection;
                         }
 
-                        if (section.SectionType == Section.SectionTypes.Finish)
-                            _rounds[participant]++;
 
                         if (_rounds[participant] <= RoundsPerRace) continue;
                         sectionData.Right = null;
