@@ -18,5 +18,9 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/turn1.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/turn2.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/turn3.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/caryellow.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/cargreen.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/cargrey.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/carpurple.png")]
 
 

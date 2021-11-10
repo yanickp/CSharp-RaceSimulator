@@ -7,13 +7,15 @@ namespace Model
         enum TeamColors
         {
             Red,
+            Blue,
             Yellow,
             Grey,
             Green,
-            Blue
+            purple,
         }
 
         string Name { get; set; }
+        string teamColourText { get; set; }
         int Points { get; set; }
         IEquipment Equipment { get; set; }
         TeamColors TeamColor { get; set; }

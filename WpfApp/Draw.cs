@@ -26,6 +26,12 @@ namespace WpfApp
 
         private const string _CarRed = ".\\images\\CarRed.png";
         private const string _CarBlue = ".\\images\\CarBlue.png";
+        private const string _CarYellow = ".\\images\\CarYellow.png";
+        private const string _CarGreen = ".\\images\\CarGreen.png";
+        private const string _CarGrey = ".\\images\\CarGrey.png";
+        private const string _CarPurple = ".\\images\\CarPurple.png";
+        
+        
         private const string _Broken = ".\\images\\Broken.png";
 
 
@@ -36,7 +42,7 @@ namespace WpfApp
 
     public static BitmapSource DrawTrack(Model.Track track)
     {
-        CalculateDimensions(track);
+        createWidthAndHeight(track);
 
         CurrentX = 0;
         CurrentY = 0;
@@ -47,26 +53,26 @@ namespace WpfApp
 
         if (Data.CurrentRace != null)
         {
-            IParticipant mark;
-            IParticipant leroy;
+            IParticipant left;
+            IParticipant right;
             
 
             foreach (Section section in track.Sections)
             {
-                mark = Data.CurrentRace.GetSectionData(section).Left;
-                leroy = Data.CurrentRace.GetSectionData(section).Right;
+                left = Data.CurrentRace.GetSectionData(section).Left;
+                right = Data.CurrentRace.GetSectionData(section).Right;
 
                 switch (section.SectionType)
                 {
                     case Section.SectionTypes.StartGrid:
                         graphics.DrawImage(imageCache.Get(_StartGrid), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
-                        DrawPlayer(graphics, mark, leroy);
+                        DrawPlayer(graphics, left, right);
                         Move();
                         break;
 
                     case Section.SectionTypes.Finish:
                         graphics.DrawImage(imageCache.Get(_Finish), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
-                        DrawPlayer(graphics, mark, leroy);
+                        DrawPlayer(graphics, left, right);
                         Move();
                         break;
 
@@ -80,7 +86,7 @@ namespace WpfApp
                         else if (CurrentDirection == 3)
                             graphics.DrawImage(imageCache.Get(_StraightHorizontal), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
 
-                        DrawPlayer(graphics, mark, leroy);
+                        DrawPlayer(graphics, left, right);
                         Move();
                         break;
 
@@ -94,7 +100,7 @@ namespace WpfApp
                         else if (CurrentDirection == 3)
                             graphics.DrawImage(imageCache.Get(_Turn2), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
 
-                        DrawPlayer(graphics, mark, leroy);
+                        DrawPlayer(graphics, left, right);
                         Right();
                         Move();
                         break;
@@ -109,7 +115,7 @@ namespace WpfApp
                         else if (CurrentDirection == 3)
                             graphics.DrawImage(imageCache.Get(_Turn3), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
 
-                        DrawPlayer(graphics, mark, leroy);
+                        DrawPlayer(graphics, left, right);
                         Left();
                         Move();
                         break;
@@ -120,27 +126,66 @@ namespace WpfApp
         return imageCache.CreateBitmapSourceFromGdiBitmap(bitmap);
     }
 
-    private static void DrawPlayer(Graphics graphics, IParticipant mark, IParticipant leroy)
+    private static void DrawPlayer(Graphics graphics, IParticipant left, IParticipant right)
     {
-        
-        if (mark != null)
+        if (left != null)
         {
-            graphics.DrawImage(new Bitmap(imageCache.Get(_CarRed), 25, 25), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
+            switch (left.TeamColor)
+            {
+                case IParticipant.TeamColors.Red:
+                    graphics.DrawImage(new Bitmap(imageCache.Get(_CarRed), 25, 25), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
+                    break;
+                case IParticipant.TeamColors.Blue:
+                    graphics.DrawImage(new Bitmap(imageCache.Get(_CarBlue), 25, 25), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
+                    break;
+                case IParticipant.TeamColors.Yellow:
+                    graphics.DrawImage(new Bitmap(imageCache.Get(_CarYellow), 25, 25), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
+                    break;
+                case IParticipant.TeamColors.Grey:
+                    graphics.DrawImage(new Bitmap(imageCache.Get(_CarGrey), 25, 25), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
+                    break;
+                case IParticipant.TeamColors.Green:
+                    graphics.DrawImage(new Bitmap(imageCache.Get(_CarGreen), 25, 25), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
+                    break;
+                case IParticipant.TeamColors.purple:
+                    graphics.DrawImage(new Bitmap(imageCache.Get(_CarPurple), 25, 25), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
+                    break;
+            }
         
-            if (mark.Equipment.IsBroken)
+            if (left.Equipment.IsBroken)
                 graphics.DrawImage(new Bitmap(imageCache.Get(_Broken), 25, 25), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
         }
         
-        if (leroy != null)
+        if (right != null)
         {
-            graphics.DrawImage(new Bitmap(imageCache.Get(_CarBlue), 25, 25), new Point(CurrentX * SectionSize + 32, CurrentY * SectionSize + 32));
+            switch (right.TeamColor)
+            {
+                case IParticipant.TeamColors.Blue:
+                    graphics.DrawImage(new Bitmap(imageCache.Get(_CarBlue), 25, 25), new Point(CurrentX * SectionSize + 32, CurrentY * SectionSize + 32));
+                    break;
+                case IParticipant.TeamColors.Red:
+                    graphics.DrawImage(new Bitmap(imageCache.Get(_CarRed), 25, 25), new Point(CurrentX * SectionSize + 32, CurrentY * SectionSize + 32));
+                    break;
+                case IParticipant.TeamColors.Yellow:
+                    graphics.DrawImage(new Bitmap(imageCache.Get(_CarYellow), 25, 25), new Point(CurrentX * SectionSize + 32, CurrentY * SectionSize + 32));
+                    break;
+                 case IParticipant.TeamColors.Grey:
+                    graphics.DrawImage(new Bitmap(imageCache.Get(_CarGrey), 25, 25), new Point(CurrentX * SectionSize + 32, CurrentY * SectionSize + 32));
+                    break;
+                 case IParticipant.TeamColors.Green:
+                    graphics.DrawImage(new Bitmap(imageCache.Get(_CarGreen), 25, 25), new Point(CurrentX * SectionSize + 32, CurrentY * SectionSize + 32));
+                    break;
+                 case IParticipant.TeamColors.purple:
+                    graphics.DrawImage(new Bitmap(imageCache.Get(_CarPurple), 25, 25), new Point(CurrentX * SectionSize + 32, CurrentY * SectionSize + 32));
+                    break;
+            }
         
-            if (leroy.Equipment.IsBroken)
+            if (right.Equipment.IsBroken)
                 graphics.DrawImage(new Bitmap(imageCache.Get(_Broken), 25, 25), new Point(CurrentX * SectionSize + 32, CurrentY * SectionSize + 32));
         }
     }
 
-    private static void CalculateDimensions(Model.Track track)
+    private static void createWidthAndHeight(Model.Track track)
     {
         CurrentX = 0;
         CurrentY = 0;

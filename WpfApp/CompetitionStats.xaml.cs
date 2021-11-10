@@ -27,14 +27,14 @@ namespace WpfApp
             StartTime.Content = $"start tijd: {Data.CurrentRace.StartTime}";
 
             Data.Competition.CompetitionChanged += Competition_CompetitionChanged;
-            PointsList.ItemsSource = Data.Competition.GetParticipantPoints();
+            PointsList.ItemsSource = Data.Competition.GetParticipants();
         }
 
         private void Competition_CompetitionChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             Dispatcher.Invoke(() =>
             {
-                PointsList.ItemsSource = Data.Competition.GetParticipantPoints();
+                PointsList.ItemsSource = Data.Competition.GetParticipants();
             });
         }
 

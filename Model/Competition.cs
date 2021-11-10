@@ -21,7 +21,7 @@ namespace Model
             this.Tracks = new Queue<Track>();
         }
 
-        public List<IParticipant> GetParticipantPoints()
+        public List<IParticipant> GetParticipants()
         {
             return this.Participants;
         }

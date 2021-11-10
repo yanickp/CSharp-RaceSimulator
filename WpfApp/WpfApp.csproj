@@ -18,6 +18,7 @@
       <None Remove="images\Turn1.png" />
       <None Remove="images\Turn2.png" />
       <None Remove="images\Turn3.png" />
+      <None Remove="images\Turn3 - Copy.png" />
     </ItemGroup>
 
     <ItemGroup>
@@ -52,6 +53,22 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
       <Content Include="images\Turn3.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="images\CarYellow.png" />
+      <Content Include="images\CarYellow.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="images\CarGreen.png" />
+      <Content Include="images\CarGreen.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="images\CarGrey.png" />
+      <Content Include="images\CarGrey.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="images\CarPurple.png" />
+      <Content Include="images\CarPurple.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>

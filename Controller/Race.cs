@@ -86,7 +86,7 @@ namespace Controller
         {
             _timer.Stop();
             _timer.Elapsed -= onTimedEvent;
-
+            
             RaceIsFinnished?.Invoke(this, new RaceFinishedEventArgs(FinishedParticipants));
             NextRace?.Invoke(this, EventArgs.Empty);
         }

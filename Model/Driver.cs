@@ -3,6 +3,7 @@
     public class Driver : IParticipant
     {
         public string Name { get; set; }
+        public string teamColourText { get; set; }
         public int Points { get; set; }
         public IEquipment Equipment { get; set; }
         public IParticipant.TeamColors TeamColor { get; set; }
@@ -13,6 +14,7 @@
             this.Points = points;
             this.TeamColor = teamColor;
             this.Equipment = equipment;
+            this.teamColourText = teamColor.ToString();
         }
     }
 }

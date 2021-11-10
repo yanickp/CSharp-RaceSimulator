@@ -8,22 +8,23 @@
         mc:Ignorable="d"
         Title="RaceStats" Height="450" Width="800">
     <Grid HorizontalAlignment="Left" Width="823">
-        <Label Content="deelnemers die al zijn gefinished" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="92,44,0,0" />
+        <Label Content="volgorde van finishen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="92,44,0,0" />
         <ListView Name="TimeBrokenList" Margin="124,75,558,175" SelectionChanged="TimeBrokenList_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="naam" Width="150" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="team" Width="150" DisplayMemberBinding="{Binding teamColourText}" />
                 </GridView>
             </ListView.View>
         </ListView>
 
-        <Label Content="auto's van de deelnemrs" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="424,44,0,0" />
+        <Label Content="auto's van de deelnemrs" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="400,44,0,0" />
         <ListView Name="PerformanceBeforeAndAfterList" Margin="343,75,157,175">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="naam" Width="100" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="snelheid" Width="100" DisplayMemberBinding="{Binding Equipment.Speed}" />
-                    <GridViewColumn Header="kwaliteit" Width="100" DisplayMemberBinding="{Binding Equipment.Quality}" />
+                    <GridViewColumn Header="kleur" Width="80" DisplayMemberBinding="{Binding teamColourText}" />
+                    <GridViewColumn Header="snelheid" Width="50" DisplayMemberBinding="{Binding Equipment.Speed}" />
+                    <GridViewColumn Header="skill" Width="50" DisplayMemberBinding="{Binding Equipment.Preformance}" />
+                    <GridViewColumn Header="kwaliteit" Width="50" DisplayMemberBinding="{Binding Equipment.Quality}" />
                 </GridView>
             </ListView.View>
         </ListView>

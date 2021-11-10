@@ -46,3 +46,7 @@ E:\Windesheim\c# les\CSharp-RaceSimulator\WpfApp\obj\Debug\net5.0-windows\Compet
 E:\Windesheim\c# les\CSharp-RaceSimulator\WpfApp\obj\Debug\net5.0-windows\RaceStats.g.cs
 E:\Windesheim\c# les\CSharp-RaceSimulator\WpfApp\obj\Debug\net5.0-windows\CompetitionStats.baml
 E:\Windesheim\c# les\CSharp-RaceSimulator\WpfApp\obj\Debug\net5.0-windows\RaceStats.baml
+E:\Windesheim\c# les\CSharp-RaceSimulator\WpfApp\bin\Debug\net5.0-windows\images\CarYellow.png
+E:\Windesheim\c# les\CSharp-RaceSimulator\WpfApp\bin\Debug\net5.0-windows\images\CarGreen.png
+E:\Windesheim\c# les\CSharp-RaceSimulator\WpfApp\bin\Debug\net5.0-windows\images\CarGrey.png
+E:\Windesheim\c# les\CSharp-RaceSimulator\WpfApp\bin\Debug\net5.0-windows\images\CarPurple.png

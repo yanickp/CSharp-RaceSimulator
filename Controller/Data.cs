@@ -16,7 +16,7 @@ namespace Controller
         {
             _random = new Random();
             Competition = new Competition("eerste compitition");
-            AddParticipants(2);
+            AddParticipants(6);
             AddTracks();
         }
 
@@ -28,20 +28,16 @@ namespace Controller
             {
                 CurrentRace = new Race(race, Competition.Participants);
             }
-            else
-            {
-                CurrentRace = null;
-            }
         }
 
         public static void AddParticipants(int amount)
         {
-            if (amount > 6)
+            string[] names = new[] {"Kees", "Jan", "Willem", "Peter", "henk", "Steve"};
+            if (amount > Enum.GetNames(typeof(IParticipant.TeamColors)).Length || amount > names.Length)
             {
-                throw new Exception();
+                amount = 2;
             }
 
-            string[] names = new[] {"Kees", "Jan", "Willem", "Peter", "henk", "Steve"};
             IParticipant.TeamColors[] teams =
                 Enum.GetValues(typeof(IParticipant.TeamColors)) as IParticipant.TeamColors[];
 

@@ -1,6 +1,7 @@
 ﻿using Controller;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,23 +31,48 @@ namespace WpfApp
             CurrentTrack.Content = _currentTrack;
 
             TimeBrokenList.ItemsSource = Data.CurrentRace.FinishedParticipants;
-            PerformanceBeforeAndAfterList.ItemsSource = Data.Competition.GetParticipantPoints();
-
-            /*
+            PerformanceBeforeAndAfterList.ItemsSource = Data.Competition.GetParticipants();
+            
              
-            Data.CurrentRace.StartNextRace += OnNextRace;
+            Data.CurrentRace.NextRace += OnNextRace;
 
-            Data.Competition.ParticipantTimeBroken.PropertyChanged += OnParticipantTimeBrokenChanged;
+            Data.Competition.CompetitionChanged += OnNextRace;
             
-
-            Data.Competition.ParticipantPerformanceBeforeAndAfter.PropertyChanged += OnParticipantPerformanceBeforeAndAfterChanged;
             
-            */
+            
         }
 
-        private void TimeBrokenList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void OnNextRace(object sender, EventArgs e)
+    {
+        if (Data.CurrentRace != null)
         {
+            _currentTrack = Data.CurrentRace.track.Name;
 
+            Dispatcher.Invoke(() =>
+            {
+                CurrentTrack.Content = _currentTrack;
+                TimeBrokenList.ItemsSource = Data.Competition.GetParticipants();
+                PerformanceBeforeAndAfterList.ItemsSource = Data.Competition.GetParticipants();
+            });
         }
+    }
+
+    private void OnChanche(object? sender, PropertyChangedEventArgs e)
+    {
+        Dispatcher.Invoke(() =>
+        {
+            TimeBrokenList.ItemsSource = Data.Competition.GetParticipants();
+            PerformanceBeforeAndAfterList.ItemsSource = Data.Competition.GetParticipants();
+        });
+    }
+
+    private void TimeBrokenList_SelectionChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
+    {
+        Dispatcher.Invoke(() =>
+        {
+            TimeBrokenList.ItemsSource = Data.Competition.GetParticipants();
+            PerformanceBeforeAndAfterList.ItemsSource = Data.Competition.GetParticipants();
+        });
+    }
     }
 }

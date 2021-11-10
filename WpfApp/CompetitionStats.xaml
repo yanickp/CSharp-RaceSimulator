@@ -12,8 +12,9 @@
         <ListView Name="PointsList" Margin="250,75,250,175">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="naam" Width="150" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="punten" Width="150" DisplayMemberBinding="{Binding Points}" />
+                    <GridViewColumn Header="naam" Width="100" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="team" Width="80" DisplayMemberBinding="{Binding teamColourText}" />
+                    <GridViewColumn Header="punten" Width="50" DisplayMemberBinding="{Binding Points}" />
                 </GridView>
             </ListView.View>
         </ListView>
