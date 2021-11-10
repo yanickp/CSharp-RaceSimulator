@@ -11,8 +11,8 @@ namespace WpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        // private RaceStats RaceStats;
-        // private CompetitionStats CompetitionStats;
+        private RaceStats RaceStats;
+        private CompetitionStats CompetitionStats;
 
         public MainWindow()
         {
@@ -29,7 +29,7 @@ namespace WpfApp
 
         private void OnRaceFinished(object sender, RaceFinishedEventArgs e)
         {
-            // Data.Competition.AwardPoints(e.FinishedParticipants);
+            
         }
 
         private void OnStartNextRace(object sender, EventArgs e)
@@ -62,13 +62,13 @@ namespace WpfApp
             Data.CurrentRace.DriversChanged += OnDriversChanged;
             Data.CurrentRace.RaceIsFinnished += OnRaceFinished;
             Data.CurrentRace.NextRace += OnStartNextRace;
-            /*
+            
             Dispatcher.Invoke(() =>
             {
                 Data.CurrentRace.DriversChanged += ((DataContext)this.DataContext).OnDriversChanged;
                 Data.CurrentRace.DriversChanged += ((DataContext)this.DataContext).OnDriversChanged;
             });
-            */
+            
         }
 
         private void UnsubscribeEvents()
@@ -80,14 +80,14 @@ namespace WpfApp
 
         private void MenuItem_RaceStats_Click(object sender, RoutedEventArgs e)
         {
-            // RaceStats = new RaceStats();
-            // RaceStats.Show();
+            RaceStats = new RaceStats();
+            RaceStats.Show();
         }
 
         private void MenuItem_CompetionStats_Click(object sender, RoutedEventArgs e)
         {
-            // CompetitionStats = new CompetitionStats();
-            // CompetitionStats.Show();
+            CompetitionStats = new CompetitionStats();
+            CompetitionStats.Show();
         }
 
         private void MenuItem_Close_Click(object sender, RoutedEventArgs e)

@@ -49,6 +49,7 @@ namespace WpfApp
         {
             IParticipant mark;
             IParticipant leroy;
+            
 
             foreach (Section section in track.Sections)
             {
@@ -121,18 +122,19 @@ namespace WpfApp
 
     private static void DrawPlayer(Graphics graphics, IParticipant mark, IParticipant leroy)
     {
+        
         if (mark != null)
         {
             graphics.DrawImage(new Bitmap(imageCache.Get(_CarRed), 25, 25), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
-
+        
             if (mark.Equipment.IsBroken)
                 graphics.DrawImage(new Bitmap(imageCache.Get(_Broken), 25, 25), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
         }
-
+        
         if (leroy != null)
         {
             graphics.DrawImage(new Bitmap(imageCache.Get(_CarBlue), 25, 25), new Point(CurrentX * SectionSize + 32, CurrentY * SectionSize + 32));
-
+        
             if (leroy.Equipment.IsBroken)
                 graphics.DrawImage(new Bitmap(imageCache.Get(_Broken), 25, 25), new Point(CurrentX * SectionSize + 32, CurrentY * SectionSize + 32));
         }
@@ -167,7 +169,7 @@ namespace WpfApp
         }
 
         Width = MaxX + 1;
-        Height = MaxY + 1;
+        Height = MaxY + 2;
     }
 
     private static void Move()

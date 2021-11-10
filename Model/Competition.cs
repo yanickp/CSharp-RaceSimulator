@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 
@@ -11,6 +12,8 @@ namespace Model
         public Queue<Track> Tracks { get; set; }
         public string name { get; set; }
 
+        public event PropertyChangedEventHandler CompetitionChanged;
+
         public Competition(string name)
         {
             this.name = name;
@@ -18,9 +21,14 @@ namespace Model
             this.Tracks = new Queue<Track>();
         }
 
+        public List<IParticipant> GetParticipantPoints()
+        {
+            return this.Participants;
+        }
+
         public void OnRaceIsFinished(object sender, RaceFinishedEventArgs e)
         {
-            //award points
+            //award points                        
             ShowScoreBoard(e);
             Thread.Sleep(5000);
         }
@@ -39,7 +47,13 @@ namespace Model
 
         public Track NextTrack()
         {
+            OnPropertyChanged();        
             return Tracks.Any() ? Tracks.Dequeue() : null;
+        }
+
+        public void OnPropertyChanged()
+        {
+            CompetitionChanged?.Invoke(this, new PropertyChangedEventArgs(null));
         }
     }
 }

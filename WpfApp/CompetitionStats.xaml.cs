@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,20 @@ namespace WpfApp
         public CompetitionStats()
         {
             InitializeComponent();
+
+            StartTime.Content = $"start tijd: {Data.CurrentRace.StartTime}";
+
+            Data.Competition.CompetitionChanged += Competition_CompetitionChanged;
+            PointsList.ItemsSource = Data.Competition.GetParticipantPoints();
         }
+
+        private void Competition_CompetitionChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                PointsList.ItemsSource = Data.Competition.GetParticipantPoints();
+            });
+        }
+
     }
 }

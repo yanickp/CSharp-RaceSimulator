@@ -1,12 +1,23 @@
-﻿<Window x:Class="WpfApp.CompetitionStats"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
+        xmlns:Model="clr-namespace:Model;assembly=Model" x:Class="WpfApp.CompetitionStats"
         mc:Ignorable="d"
         Title="CompetitionStats" Height="450" Width="800">
     <Grid>
-        
+        <Label Content="Points" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,34,0,0" />
+        <ListView Name="PointsList" Margin="250,75,250,175">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="naam" Width="150" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="punten" Width="150" DisplayMemberBinding="{Binding Points}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Label Name="StartTime" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,324,0,0" />
     </Grid>
 </Window>

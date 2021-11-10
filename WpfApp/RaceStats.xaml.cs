@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,10 +19,34 @@ namespace WpfApp
     /// Interaction logic for RaceStats.xaml
     /// </summary>
     public partial class RaceStats : Window
-    {
-        public RaceStats()
+
+    { 
+       private string _currentTrack;
+
+    public RaceStats()
         {
             InitializeComponent();
+            _currentTrack = Data.CurrentRace.track.Name;
+            CurrentTrack.Content = _currentTrack;
+
+            TimeBrokenList.ItemsSource = Data.CurrentRace.FinishedParticipants;
+            PerformanceBeforeAndAfterList.ItemsSource = Data.Competition.GetParticipantPoints();
+
+            /*
+             
+            Data.CurrentRace.StartNextRace += OnNextRace;
+
+            Data.Competition.ParticipantTimeBroken.PropertyChanged += OnParticipantTimeBrokenChanged;
+            
+
+            Data.Competition.ParticipantPerformanceBeforeAndAfter.PropertyChanged += OnParticipantPerformanceBeforeAndAfterChanged;
+            
+            */
+        }
+
+        private void TimeBrokenList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

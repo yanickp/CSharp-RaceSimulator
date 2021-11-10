@@ -13,10 +13,10 @@
     <Grid Background="DimGray">
         <DockPanel LastChildFill="False" Height="20" VerticalAlignment="Top">
             <Menu DockPanel.Dock="Top" Height="20" VerticalAlignment="Top">
-                <MenuItem Header="Menu">
-                    <MenuItem Header="RaceStats" Click="MenuItem_RaceStats_Click" />
-                    <MenuItem Header="CompetionStats" Click="MenuItem_CompetionStats_Click" />
-                    <MenuItem Header="Close" Click="MenuItem_Close_Click" />
+                <MenuItem Header="Schermen">
+                    <MenuItem Header="Race statestieken" Click="MenuItem_RaceStats_Click" />
+                    <MenuItem Header="competitie statestieken" Click="MenuItem_CompetionStats_Click" />
+                    <MenuItem Header="afsluiten" Click="MenuItem_Close_Click" />
                 </MenuItem>
             </Menu>
         </DockPanel>

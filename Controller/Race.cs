@@ -5,6 +5,7 @@ using System.Threading;
 using Model;
 using System.Timers;
 using Timer = System.Timers.Timer;
+using System.Linq;
 
 public delegate void OnDriversChanged(object sender, DriverChangeEventArgs e);
 
@@ -22,7 +23,7 @@ namespace Controller
         public DateTime StartTime { get; set; }
 
 
-        private readonly Queue<IParticipant> FinishedParticipants;
+        public readonly Queue<IParticipant> FinishedParticipants;
         private Random _random;
         private Dictionary<Section, SectionData> _positions;
         private readonly Dictionary<IParticipant, int> _rounds;
@@ -58,9 +59,11 @@ namespace Controller
             {
                 _rounds.Add(p, 0);
             }
-
+            
             Start();
         }
+
+        
 
         private void ResetParticipantsStats()
         {
@@ -117,7 +120,7 @@ namespace Controller
 
         private void onTimedEvent(object sender, ElapsedEventArgs e)
         {
-            _timer.Stop();
+            _timer.Stop();           
             bool arleadyFinished = false;
             foreach (Section section in track.Sections)
             {
@@ -173,7 +176,9 @@ namespace Controller
 
                                             if (!arleadyFinished)
                                             {
+                                                participant.Points += 10 - FinishedParticipants.Count();
                                                 FinishedParticipants.Enqueue(participant);
+                                                
                                                 arleadyFinished = true;
                                             }
                                         }
@@ -217,7 +222,7 @@ namespace Controller
 
                         nextSectionData.Right = null;
                         nextSectionData.DistanceRight = 0;
-
+                        participant.Points += 10 - FinishedParticipants.Count();
                         FinishedParticipants.Enqueue(participant);
                     }
                     if (sectionData.Right != null)
