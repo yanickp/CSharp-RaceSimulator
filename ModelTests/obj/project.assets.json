@@ -1254,6 +1254,19 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
+      "Controller/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Model": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Controller.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Controller.dll": {}
+        }
+      },
       "Model/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -4953,6 +4966,11 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
+    "Controller/1.0.0": {
+      "type": "project",
+      "path": "../Controller/Controller.csproj",
+      "msbuildProject": "../Controller/Controller.csproj"
+    },
     "Model/1.0.0": {
       "type": "project",
       "path": "../Model/Model.csproj",
@@ -4961,6 +4979,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Controller >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.9.4",
       "Model >= 1.0.0",
       "NUnit >= 3.13.1",
@@ -4995,6 +5014,9 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
+            "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Controller\\Controller.csproj": {
+              "projectPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Controller\\Controller.csproj"
+            },
             "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Model\\Model.csproj": {
               "projectPath": "E:\\Windesheim\\c# les\\CSharp-RaceSimulator\\Model\\Model.csproj"
             }

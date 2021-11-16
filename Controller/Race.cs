@@ -65,7 +65,7 @@ namespace Controller
 
         
 
-        private void ResetParticipantsStats()
+        public void ResetParticipantsStats()
         {
             foreach (var p in Participants)
             {
@@ -118,7 +118,7 @@ namespace Controller
             }
         }
 
-        private void onTimedEvent(object sender, ElapsedEventArgs e)
+        public void onTimedEvent(object sender, ElapsedEventArgs e)
         {
             _timer.Stop();           
             bool arleadyFinished = false;

@@ -55,7 +55,6 @@ namespace WpfApp
         {
             IParticipant left;
             IParticipant right;
-            
 
             foreach (Section section in track.Sections)
             {
@@ -66,13 +65,13 @@ namespace WpfApp
                 {
                     case Section.SectionTypes.StartGrid:
                         graphics.DrawImage(imageCache.Get(_StartGrid), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
-                        DrawPlayer(graphics, left, right);
+                        DrawPlayer(graphics, left, right, CurrentDirection);
                         Move();
                         break;
 
                     case Section.SectionTypes.Finish:
                         graphics.DrawImage(imageCache.Get(_Finish), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
-                        DrawPlayer(graphics, left, right);
+                        DrawPlayer(graphics, left, right, CurrentDirection);
                         Move();
                         break;
 
@@ -86,7 +85,7 @@ namespace WpfApp
                         else if (CurrentDirection == 3)
                             graphics.DrawImage(imageCache.Get(_StraightHorizontal), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
 
-                        DrawPlayer(graphics, left, right);
+                        DrawPlayer(graphics, left, right, CurrentDirection);
                         Move();
                         break;
 
@@ -100,7 +99,7 @@ namespace WpfApp
                         else if (CurrentDirection == 3)
                             graphics.DrawImage(imageCache.Get(_Turn2), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
 
-                        DrawPlayer(graphics, left, right);
+                        DrawPlayer(graphics, left, right, CurrentDirection);
                         Right();
                         Move();
                         break;
@@ -115,7 +114,7 @@ namespace WpfApp
                         else if (CurrentDirection == 3)
                             graphics.DrawImage(imageCache.Get(_Turn3), new Point(CurrentX * SectionSize, CurrentY * SectionSize));
 
-                        DrawPlayer(graphics, left, right);
+                        DrawPlayer(graphics, left, right, CurrentDirection);
                         Left();
                         Move();
                         break;
@@ -126,7 +125,7 @@ namespace WpfApp
         return imageCache.CreateBitmapSourceFromGdiBitmap(bitmap);
     }
 
-    private static void DrawPlayer(Graphics graphics, IParticipant left, IParticipant right)
+    private static void DrawPlayer(Graphics graphics, IParticipant left, IParticipant right, int direction)
     {
         if (left != null)
         {

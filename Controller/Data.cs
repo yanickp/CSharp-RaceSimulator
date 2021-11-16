@@ -132,7 +132,7 @@ namespace Controller
             }
         }
 
-        private static bool ValidateTrack(Section.SectionTypes[] sections)
+        public static bool ValidateTrack(Section.SectionTypes[] sections)
         {
             Queue<bool> RightCorners = new Queue<bool>();
             RightCorners.Enqueue(true);

@@ -12,6 +12,7 @@
         }
 
         public SectionTypes SectionType { get; set; }
+        public int Rotated { get; set; }
 
         // public Section(SectionTypes sectionType)
         // {

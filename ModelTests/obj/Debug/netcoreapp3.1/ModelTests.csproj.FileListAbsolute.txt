@@ -100,3 +100,5 @@ E:\Windesheim\c# les\CSharp-RaceSimulator\ModelTests\obj\Debug\netcoreapp3.1\Mod
 E:\Windesheim\c# les\CSharp-RaceSimulator\ModelTests\bin\Debug\netcoreapp3.1\CoverletSourceRootsMapping
 E:\Windesheim\c# les\CSharp-RaceSimulator\ModelTests\bin\Debug\netcoreapp3.1\Model.dll
 E:\Windesheim\c# les\CSharp-RaceSimulator\ModelTests\bin\Debug\netcoreapp3.1\Model.pdb
+E:\Windesheim\c# les\CSharp-RaceSimulator\ModelTests\bin\Debug\netcoreapp3.1\Controller.dll
+E:\Windesheim\c# les\CSharp-RaceSimulator\ModelTests\bin\Debug\netcoreapp3.1\Controller.pdb
